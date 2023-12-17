@@ -21,8 +21,19 @@ class Queue {
   }
 
   getUnderlyingList() {
-    throw new NotImplementedError('Not implemented');
-    // remove line with error and write your code here
+    let current = null;
+    for (let i = this.head; i < this.tail; i += 1) {
+      if (!current) {
+        current = new ListNode(this.storage[i]);
+      } else {
+        let temporary = current;
+        while (temporary.next) {
+          temporary = temporary.next;
+        }
+        temporary.next = new ListNode(this.storage[i]);
+      }
+    }
+    return current;
   }
 
   enqueue(value) {
